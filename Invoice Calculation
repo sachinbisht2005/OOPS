@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+class invoice
+{
+	private:
+	string partNumber;
+	string partDiscription;
+	int Quantity;
+	double price_per_item;
+	public:
+	invoice(string partNumber,string partDiscription,int Quantity,double price_per_item)       //constructor
+	{
+	   this->partNumber=partNumber;
+	   this->partDiscription=partDiscription;
+	   this->Quantity=Quantity;
+	   this->price_per_item=price_per_item;
+	}
+	void setpartNumber(string partNumber)
+	{
+	this->partNumber=partNumber;
+	}
+	void setpartDiscription(string partDiscription)
+	{
+	this->partDiscription=partDiscription;
+	}
+	void setQuantity(int Quantity)
+	{
+	if(Quantity<0)
+	     this->Quantity=0;
+	  else
+	     this->Quantity=Quantity;
+	}
+	void setPricePerItem(int price_per_item)
+	{
+         if(price_per_item<0)
+	     this->price_per_item=0;
+	  else
+	     this->price_per_item=price_per_item;
+	}
+	string getPartNumber(string partNumber)
+	{
+	 return partNumber;
+	}
+	string get(string partDiscription)
+	{
+		return partDiscription;
+	}
+	int getQuantity(int Quantity)
+	{
+		return Quantity;
+	}
+	double getprice_per_item(int price_per_item)
+	{
+		return price_per_item;
+	}
+	
+	int getInvoiceAmnt()
+	{
+
+		return Quantity*price_per_item;
+	}
+};
+int main()
+{
+invoice d1("12","Tyre",50,100.0);
+
+cout<<d1.getInvoiceAmnt()<<endl;
+d1.setQuantity(100);      
+cout<<d1.getInvoiceAmnt(); 
+	return 0;
+}
