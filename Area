@@ -1,0 +1,45 @@
+#include<iostream>     //using function overloading.
+using namespace std;
+class cal_area 
+{
+	private:
+	public:
+	int area(int a)
+	{
+		int x=a*a;
+		return x;
+	}
+	int area(int a,int b){
+		int x=a*b;
+		return x;
+	}
+	int area(float a,float h){
+		int x=0.5*a*h;
+		return x;
+	}
+	
+};
+int main()
+{
+int n,x,y;
+float h,z;
+cal_area a;
+cout<<"Enter the 1 for square 2 for rectangle 3 for triangle: ";
+cin>>n;
+switch(n)
+{
+case 1: cout<<"Enter the side of square: ";
+	cin>>x;
+	cout<<a.area(x);
+	break;
+case 2: cout<<"Enter the length and breadth of rectangle: ";
+	cin>>x>>y;
+	cout<<a.area(x,y);
+	break;
+case 3: cout<<"Enter the base and hight of triangle: ";
+	cin>>z>>h;
+	cout<<a.area(z,h);
+	break;
+}
+return 0;
+}
