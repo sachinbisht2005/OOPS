@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+class Time
+{
+	private:
+	int hours;
+	int minutes;
+	int seconds;
+	public:
+	Time(){
+	this->hours=0;
+	this->minutes=0;
+	this->seconds=0;
+	}
+    Time(int hours,int minutes,int seconds)
+	{
+	  this->hours=hours;
+	  this->minutes=minutes;
+	  this->seconds=seconds;
+	}	
+	void display()
+	{
+	  cout<<this->hours<<":"<<this->minutes<<":"<<this->seconds;
+	}	
+	void add(Time d1,Time d2)
+	{
+	   int temp=0;
+	   temp=d1.seconds+d2.seconds;
+	   if(temp>=60)
+	   {
+	     this->minutes=temp/60;
+	     this->seconds=temp%60;
+	     temp=0;
+	   }
+	   temp=d1.minutes+d2.minutes;
+	   if(temp>=60)
+	   {
+	     this->hours=temp/60;
+	     this->minutes+=temp%60;
+	     temp=0;
+	   }
+	   this->hours+=d1.hours+d2.hours;
+	}
+};
+int main()
+{
+	Time d1(20,50,67);
+	Time d2(20,10,60);
+	Time d3;
+	d3.add(d1,d2);
+	d3.display();
+	return 0;
+}
