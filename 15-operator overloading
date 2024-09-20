@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std;
+class complex
+{
+private:
+	int real;
+	int img;
+public:
+	void get(int real,int img)
+	{
+		this->real=real;
+		this->img=img;
+	}
+	void operator+(complex d2)
+	{
+	    int real=this->real+d2.real;
+	    int img=this->img+d2.img;
+	   cout<<"The numeber after addition="<<real<<"+"<<img<<"i"<<endl;
+	}
+	void operator-(complex d2)
+	{
+	    int real=this->real-d2.real;
+	    int img=this->img-d2.img;
+	    if(img<0)
+	    cout<<"The numeber after substraction="<<real<<img<<"i"<<endl;
+	    else
+	    cout<<"The numeber after substraction="<<real<<"+"<<img<<"i"<<endl;
+	}
+	void operator==(complex d2)
+	{
+	  if(real==d2.real&&img==d2.img)
+	  cout<<"Equal"<<endl;
+	  else
+	  cout<<"Not equal"<<endl;
+	}
+	
+};
+int main()
+{
+	complex d1,d2;
+	int real, img;
+	printf("Enter real and imaginary number:");
+	scanf("%d%d",&real,&img);
+	d1.get(real,img);
+	printf("Enter real and imaginary number for opperation:");
+	scanf("%d%d",&real,&img);
+	d2.get(real,img);
+	d1+d2;
+	d1-d2;
+	d1==d2;
+}
