@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+class complex
+{
+private:
+	int a;
+public:
+       complex(){}
+       complex(int a)
+       {
+       		this->a=a;
+       }
+       void operator++()
+       {
+          this->a=this->a+1;
+          cout<<a<<endl;
+       }	
+       void operator++(int)
+       {
+          this->a=this->a+1;
+          cout<<a<<endl;
+       }	
+       void operator--()
+       {
+          this->a=this->a-1;
+          cout<<a<<endl;
+       }
+       void operator--(int)
+       {
+          this->a=this->a-1;
+          cout<<a<<endl;
+       }
+       void operator-()
+       {
+          this->a=this->a*(-1);
+          cout<<a<<endl;
+       }
+      
+};	
+int main()
+{
+   complex d1(10);
+   ++d1;
+   d1++;
+   --d1;
+   d1--;
+   -d1;
+return 0;
+}
