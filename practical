@@ -1,0 +1,263 @@
+#include <iostream>
+using namespace std;
+
+template<class T>
+class vector {
+    T* v;           // Pointer to store the dynamic array
+    int size;       // Size of the vector
+
+public:
+    // Constructor to initialize vector of given size with 0
+    vector(int m) {
+        size = m;
+        v = new T[size];
+        for (int i = 0; i < size; i++) {
+            v[i] = 0; // Initialize all elements to 0
+        }
+    }
+
+    // Constructor to initialize vector from an array
+    vector(T* a, int m) {
+        size = m;
+        v = new T[size];
+        for (int i = 0; i < size; i++) {
+            v[i] = a[i]; // Copy elements from array
+        }
+    }
+
+    // Operator overloading to compute dot product of two vectors
+    T operator*(vector& y) {
+        T sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += v[i] * y.v[i];
+        }
+        return sum;
+    }
+
+    // Destructor to release dynamically allocated memory
+    ~vector() {
+        delete[] v;
+    }
+};
+
+int main() {
+    int arr1[] = {1, 2, 3};
+    int arr2[] = {4, 5, 6};
+    int size = 3;
+
+    vector<int> v1(arr1, size); // Initialize with arr1
+    vector<int> v2(arr2, size); // Initialize with arr2
+
+    int result = v1 * v2; // Compute dot product
+    cout << "Dot product: " << result << endl;
+
+    return 0;
+}
+
+#include<iostream>
+using namespace std;
+int largestProper(int n)
+{
+    if(n==0)
+    {
+         throw "the largest proper divisor is not defined for n=0";
+    }
+    else if(n==1)
+        throw "the largest proper divisor is not defined for n=0";
+    else 
+    {
+        for(int i=n/2;i<1;i++)
+        {
+            if(n%i==0)
+            {
+                return i;
+            }
+        }
+    }
+}
+void process(int n)
+{
+    try{
+        int result=largestProper(n);
+        printf("Ans = %d",result);
+    }
+    catch(const invalid_argument& e)
+    {
+          cout<<e.what() <<endl; 
+    }
+}
+int main(){
+    int n;
+    scanf("%d",&n);
+    process(n);
+}
+
+
+#include<iostream>
+using namespace std;
+class student
+{
+    private:
+       int roll_no;
+    public:
+        void getNum(int n)
+        {
+            roll_no=n;
+        }   
+        void putNum()
+        {
+            cout<<"Roll Num:"<<roll_no;
+        }
+    
+};
+class marks:virtual public student{
+    protected:
+        int marks1;
+        int marks2;
+    public:
+        void get_marks(int v1,int v2)
+        {
+            marks1=v1;
+            marks2=v2;
+        }    
+};
+class score:virtual public student{
+    protected:
+        int score;
+    public:
+        void get_score(int v)
+        {
+           score=v;
+        }    
+};
+class result:public marks,public score{
+    public:
+    void display(){
+      putNum();
+      int totel=marks1+marks2+score;
+      cout<<"\nTotel:"<<totel;
+    }
+};
+int main()
+{
+   result d;
+   d.getNum(56);
+   d.get_marks(10,4);
+   d.get_score(45);
+   d.display();
+}
+
+#include<iostream>
+using namespace std;
+class hello{
+    int a;
+    public:
+    hello(){}
+    hello(int v){
+        a=v;
+    }
+    int operator+(hello obj)
+    {
+        int x;
+        x=a+obj.a;
+        cout<<"Ans="<<x;
+        return a+obj.a;
+    }
+    int operator++(int)
+    {
+        a++;
+        return a;
+    }
+    int operator++()
+    {
+       a++;
+       return a;
+    }
+    void  display()
+    {
+       cout<<"dd:"<<a;
+    }
+    friend hello operator--(hello &obj);
+    friend hello operator--(hello &obj,int);
+};
+hello operator--(hello &obj) 
+{
+   return obj.a=--obj.a;
+}
+hello operator--(hello &obj,int) 
+{
+   return obj.a=--obj.a;
+}
+int main()
+{
+   hello d(5);
+   hello c(8);
+   c+d;
+   
+  c++;
+  ++c;
+   cout<<"After:"<<++c;
+   c.display();
+   c--;
+    c.display();
+
+}
+
+
+
+/*Create a base class called shape. Use this class to store two double type values that could be 
+used to compute the area  of figures. Derive two specific  classes called triangle and rectangle 
+from base   shape. Add to  the base class, a member function get_data() to initialize base class 
+data  members  and another member function display_area()  to compute  and display  the  area of 
+figures.Make display_area() asa virtual function and redefine this function in the derived class 
+to  suit  their  requirements.  Using  these  three  classes,  design a program that will accept 
+dimensions  of  a triangle or a  rectangle  interactively and display the area. Remember the two 
+values given as input will be treated as lengths of two sides in the case of rectangles and as 
+base and height in the case of triangle and used as follows: Area of rectangle = x * y Area of 
+triangle = ½ *x*y. */
+
+#include<iostream>
+using namespace std;
+class shape{
+    protected:
+        double x;
+        double y;
+    public:
+       void get_data(double x,double y)
+       {
+            this->x=x;
+            this->y=y;
+       }
+       void virtual display()
+       {
+        cout<<""<<endl;
+       }
+
+};
+class  triangle:public shape
+{
+    public:
+    void displayTriangle()
+    {
+        cout<<"\nArea of triangle="<<(0.5)*(x*y);
+    }
+};
+class  rectangle:public shape
+{
+    public:
+    void displayRectangle()
+    {
+        double area=2*(x*y);
+        cout<<"\nArea of Rectangle="<<area;
+    }
+};
+int main()
+{
+    rectangle d;
+    d.get_data(2,4);
+    d.displayRectangle();
+    triangle d1;
+    d1.get_data(2,4);
+    d1.displayTriangle();
+
+}
